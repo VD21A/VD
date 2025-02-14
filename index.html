@@ -42,13 +42,10 @@
             top: 0;
             left: 0;
             pointer-events: none;
+            font-size: 24px;
         }
         .heart {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: red;
-            clip-path: path('M10 30s-10-20 10-30 10 10 10 10 10-10 10-10 20 10 10 30z');
             animation: float 5s infinite;
         }
         @keyframes float {
@@ -73,6 +70,7 @@
                 heart.className = 'heart';
                 heart.style.left = Math.random() * 100 + 'vw';
                 heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+                heart.textContent = Math.random() > 0.5 ? '❤️' : '🌹';
                 heartsContainer.appendChild(heart);
                 setTimeout(() => { heart.remove(); }, 5000);
             }
