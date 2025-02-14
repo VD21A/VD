@@ -52,9 +52,23 @@
             from { transform: translateY(100vh) scale(0.5); opacity: 1; }
             to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
         }
+        .background-animations {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        .animated-emoji {
+            position: absolute;
+            font-size: 40px;
+            animation: float 6s infinite;
+        }
     </style>
 </head>
 <body>
+    <div class="background-animations"></div>
     <div class="container">
         <button class="button" onclick="openPDF()">Open Me ❤️🌹</button>
     </div>
@@ -75,7 +89,21 @@
                 setTimeout(() => { heart.remove(); }, 5000);
             }
         }
+        function createBackgroundAnimations() {
+            const bgContainer = document.querySelector('.background-animations');
+            for (let i = 0; i < 20; i++) {
+                let emoji = document.createElement('div');
+                emoji.className = 'animated-emoji';
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.top = Math.random() * 100 + 'vh';
+                emoji.style.animationDuration = Math.random() * 3 + 3 + 's';
+                emoji.textContent = Math.random() > 0.5 ? '❤️' : '🌹';
+                bgContainer.appendChild(emoji);
+                setTimeout(() => { emoji.remove(); }, 6000);
+            }
+        }
         setInterval(createHearts, 500);
+        setInterval(createBackgroundAnimations, 1000);
     </script>
 </body>
 </html>
